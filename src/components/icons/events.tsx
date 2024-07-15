@@ -1,8 +1,8 @@
-export const EventsIcon = ({ color = "#3C888D" }) => {
+export const EventsIcon = ({ width = 24, height = 24, color = "#3C888D" }) => {
   return (
     <svg
-      width="19"
-      height="20"
+      width={width}
+      height={height}
       viewBox="0 0 19 20"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

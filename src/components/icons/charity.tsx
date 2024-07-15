@@ -1,8 +1,8 @@
-export const CharityIcon = ({ color = "#3C888D" }) => {
+export const CharityIcon = ({ height = 24, width = 24, color = "#3C888D" }) => {
   return (
     <svg
-      width="24"
-      height="24"
+      width={width}
+      height={height}
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
