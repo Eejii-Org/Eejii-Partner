@@ -1,5 +1,7 @@
-const AuthPage = () => {
-  return <div>This is Auth Page</div>;
+import { UserSelect } from "@/components/auth";
+
+const Auth = () => {
+  return <UserSelect />;
 };
 
-export default AuthPage;
+export default Auth;
