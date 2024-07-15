@@ -27,15 +27,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       return;
     }
     try {
-      // const data = await axios.get(
-      //   `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/me`,
-      //   {
-      //     headers: {
-      //       Authorization: `Bearer ${token}`,
-      //     },
-      //   }
-      // );
-      setUser(null);
+      const data = await axios.get(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/me`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      );
+      setUser(data.data as any);
       setUserLoading(false);
     } catch (e) {
       setUserLoading(false);
