@@ -1,8 +1,12 @@
-export const VolunteeringIcon = ({ color = "#3C888D" }) => {
+export const VolunteeringIcon = ({
+  width = 24,
+  height = 24,
+  color = "#3C888D",
+}) => {
   return (
     <svg
-      width="25"
-      height="25"
+      width={width}
+      height={height}
       viewBox="0 0 25 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

@@ -30,3 +30,8 @@ export * from "./charity";
 export * from "./fundraising";
 export * from "./phone";
 export * from "./mail";
+export * from "./log-out";
+export * from "./globe";
+export * from "./category";
+export * from "./newspaper";
+export * from "./settings";

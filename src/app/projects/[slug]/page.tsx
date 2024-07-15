@@ -4,7 +4,7 @@ import { MainLayout } from "@/components/main-layout";
 import { useAuth } from "@/providers";
 import { useRouter } from "next/navigation";
 
-export default function Home() {
+export default function ProjectDetail() {
   const { user, userLoading } = useAuth();
   const router = useRouter();
   if (userLoading) {

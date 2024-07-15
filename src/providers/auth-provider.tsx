@@ -1,19 +1,21 @@
 "use client";
 
 import axios from "axios";
-import { getCookie } from "cookies-next";
+import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { redirect } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 type AuthType = {
   user: any | null;
   userLoading: boolean;
   getUser: () => Promise<void> | null;
+  logout: () => Promise<void> | null;
 };
 
 export const AuthContext = createContext<AuthType>({
   user: null,
   userLoading: true,
   getUser: () => null,
+  logout: () => null,
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -41,11 +43,22 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       setUserLoading(false);
     }
   };
+  const logout = async () => {
+    try {
+      setUserLoading(true);
+      deleteCookie("token");
+      setUser(null);
+      setUserLoading(false);
+    } catch (e) {
+      console.log(e);
+      setUserLoading(false);
+    }
+  };
   useEffect(() => {
     getUser();
   }, []);
   return (
-    <AuthContext.Provider value={{ user, userLoading, getUser }}>
+    <AuthContext.Provider value={{ user, userLoading, getUser, logout }}>
       {children}
     </AuthContext.Provider>
   );
