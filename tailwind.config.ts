@@ -21,7 +21,7 @@ const config: Config = {
           DEFAULT: "var(--primary)",
           50: "rgba(60, 136, 141, 0.1)" /* 10% opacity */,
           100: "rgba(60, 136, 141, 0.2)" /* 20% opacity */,
-          200: "rgba(60, 136, 141, 0.3)" /* 30% opacity */,
+          200: "rgba(60, 136, 141, 0.3)" /* 30% opacity #3c888d4d */,
           300: "rgba(60, 136, 141, 0.4)" /* 30% opacity */,
           400: "rgba(60, 136, 141, 0.5)" /* 30% opacity */,
           500: "rgba(60, 136, 141, 0.6)" /* 30% opacity */,
