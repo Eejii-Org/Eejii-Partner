@@ -35,3 +35,5 @@ export * from "./globe";
 export * from "./category";
 export * from "./newspaper";
 export * from "./settings";
+export * from "./map-pin";
+export * from "./pencil-simple";

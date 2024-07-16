@@ -9,7 +9,7 @@ export const MainLayout = ({ children }: { children: React.ReactNode }) => {
       <Header />
       <section className="pt-[72px] flex flex-row">
         <Sidebar />
-        <div className="p-5">{children}</div>
+        <div className="p-5 w-full">{children}</div>
       </section>
       <Footer />
     </>

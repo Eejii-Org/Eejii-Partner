@@ -4,13 +4,13 @@ import { PersonIcon, PartnerIcon, VolunteerIcon } from "../icons";
 export const UserSelect = () => {
   const userTypes = [
     {
-      icon: <PersonIcon />,
+      icon: <PersonIcon width={40} height={40} />,
       type: "Дэмжигч",
       href: "/auth/sign-in?user=supporter",
       disabled: false,
     },
     {
-      icon: <PartnerIcon />,
+      icon: <PartnerIcon width={40} height={40} />,
       type: "Хамтрагч",
       href: "/auth/sign-in?user=partner",
       disabled: false,

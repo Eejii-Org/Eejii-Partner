@@ -1,11 +1,12 @@
 "use client";
 
+import { UserType } from "@/types";
 import axios from "axios";
 import { deleteCookie, getCookie, setCookie } from "cookies-next";
 import { redirect } from "next/navigation";
 import { createContext, useContext, useEffect, useState } from "react";
 type AuthType = {
-  user: any | null;
+  user: UserType | null;
   userLoading: boolean;
   getUser: () => Promise<void> | null;
   logout: () => Promise<void> | null;
