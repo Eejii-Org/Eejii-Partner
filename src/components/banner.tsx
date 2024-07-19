@@ -1,45 +1,25 @@
 "use client";
-import { getAdvertisement } from "@/actions";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ReactNode } from "react";
+import { BrainstormIllustration } from "./icons";
 
-export type BannerPositionType =
-  | "ad_media_1x1"
-  | "ad_media_1x1_bottom"
-  | "ad_media_1x4"
-  | "ad_event_list_3x2"
-  | "ad_event_detail_3x2"
-  | "ad_project_list_3x2"
-  | "ad_project_detail_3x2"
-  | "ad_,edoa_3x1";
-
-export const Banner = ({ position }: { position: BannerPositionType }) => {
-  const [adData, setAdData] = useState<any>(null);
-  useEffect(() => {
-    const getAd = async () => {
-      const ad = await getAdvertisement(position);
-      setAdData(ad && ad[0]);
-    };
-    getAd();
-  }, [position]);
+export const Banner = ({
+  label,
+  button,
+}: {
+  label: string;
+  button?: ReactNode;
+}) => {
   return (
-    <div className="flex-1 flex relative ">
-      {adData && (
-        <>
-          <Image
-            src={adData.desktopPath}
-            fill
-            alt={position}
-            className="object-cover blur"
-          />
-          <Image
-            src={adData.desktopPath}
-            fill
-            alt={position}
-            className="object-contain"
-          />
-        </>
-      )}
+    <div className="flex justify-center relative p-5 bg-primary-100 rounded-xl">
+      <div className="">
+        <BrainstormIllustration />
+      </div>
+      <div className="absolute top-0 left-0 w-full flex flex-col justify-center gap-5 md:gap-0 md:flex-row md:justify-between p-5">
+        <h1 className="flex font-semibold text-2xl items-center justify-center">
+          {label}
+        </h1>
+        <div className="flex justify-center">{button}</div>
+      </div>
     </div>
   );
 };

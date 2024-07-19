@@ -13,6 +13,7 @@ import {
 import { AuthContext, useAuth } from "@/providers";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
+import { Loader } from "./loader";
 
 const links = [
   {
@@ -37,9 +38,17 @@ const links = [
 
 export const Header = () => {
   const router = useRouter();
-  const { user, logout } = useAuth();
+  const { user, userLoading, logout } = useAuth();
   const [isDropdownOpened, setIsDropdownOpened] = useState(false);
   const [isNavOpened, setIsNavOpened] = useState(false);
+
+  if (userLoading) {
+    return <Loader />;
+  }
+  if (!user) {
+    router.push("/auth");
+    return <div></div>;
+  }
 
   return (
     <header className="bg-white fixed w-full z-50 shadow-sm">
@@ -110,7 +119,7 @@ export const Header = () => {
         >
           <div className="flex flex-row gap-2 items-center">
             <PersonIcon width={25} height={25} />
-            {user.username}
+            {user?.username}
             <div
               className={`inline transition-all ${
                 isDropdownOpened && "rotate-180"
