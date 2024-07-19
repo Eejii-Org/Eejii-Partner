@@ -1,29 +1,32 @@
 export type GenderType = "m" | "f";
 export type UserType = {
   address: AddressType;
-  approvedAt: string | null;
+  plainPassword?: string;
+  approvedAt?: string | null;
   bio: string;
-  createdAt: string;
   email: string;
-  eventPermit: number;
-  fundraisingPermit: number;
-  grantFundraisingPermit: number;
-  historyDescription: string | null;
-  id: number;
-  images: ImageType[];
-  introduction: string | null;
-  mediaPermit: number;
+  historyDescription?: string | null;
+  id?: number;
+  images?: ImageType[];
+  introduction?: string | null;
   organizationType: string;
   phoneNumber: string;
-  state: string;
-  subscriptionCode: string;
-  subscriptionEndDate: string | null;
-  subscriptionId: number;
-  subscriptionStartDate: string;
-  type: string;
-  updatedAt: string;
+  state?: string;
+  subscriptionCode?: string;
+  subscriptionEndDate?: string | null;
+  subscriptionId?: number;
+  subscriptionStartDate?: string;
+  type?: string;
   username: string;
-  volunteeringEventPermit: number;
+
+  createdAt?: string;
+  updatedAt?: string;
+
+  eventPermit?: number;
+  fundraisingPermit?: number;
+  mediaPermit?: number;
+  volunteeringEventPermit?: number;
+  grantFundraisingPermit?: number;
 };
 
 export type VolunteerType = {
