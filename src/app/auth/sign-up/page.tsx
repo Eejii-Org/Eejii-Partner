@@ -38,12 +38,8 @@ const Comp = () => {
     plainPassword: "",
     phoneNumber: "",
     username: "",
-    firstName: "",
-    lastName: "",
-    gender: "m",
     bio: "",
-    registerNumber: "",
-    birthday: "",
+    organizationType: "",
     address: {
       country: "Mongolia",
       countryCode: "MN",

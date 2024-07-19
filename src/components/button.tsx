@@ -24,7 +24,7 @@ export const Button = (props: ButtonPropsType) => {
 
   return (
     <button
-      className={`${variantClassName} flex gap-2 p-3 rounded-full text-lg font-bold tracking-wider  transition-all ${
+      className={`${variantClassName} flex items-center gap-2 px-3 py-1 rounded-full tracking-wider  transition-all ${
         props.className ? props.className : ""
       }`}
       {...buttonAttributes}

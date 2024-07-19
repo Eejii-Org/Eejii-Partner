@@ -33,7 +33,7 @@ export default function Home() {
   }, [user]);
 
   const aboutImage =
-    user?.images.find((img: any) => img.type == "about")?.path ||
+    user?.images?.find((img: any) => img.type == "about")?.path ||
     "/assets/placeholder.svg";
 
   if (userLoading) {
@@ -91,8 +91,8 @@ export default function Home() {
       <div className="bg-white flex gap-5 justify-between rounded-2xl p-5 shadow-sm mt-5">
         <div className="flex flex-col w-full justify-between gap-5 md:flex-row">
           <div className="">
-            <h2 className="text-xl font-semibold">{user.username}</h2>
-            <p className="text-gray-500 my-2">{user.organizationType}</p>
+            <h2 className="text-xl font-semibold">{user?.username}</h2>
+            <p className="text-gray-500 my-2">{user?.organizationType}</p>
             <div className="flex gap-1 items-center">
               <MapPinIcon width={20} height={20} />
               <span className="text-gray-500 text-md">
