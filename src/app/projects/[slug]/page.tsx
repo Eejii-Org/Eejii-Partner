@@ -4,7 +4,7 @@ import { Loader } from "@/components/loader";
 import { MainLayout } from "@/components/main-layout";
 import { useAuth } from "@/providers";
 import { useRouter } from "next/navigation";
-import { Button, PencilSimpleIcon } from "@/components";
+import { ArrowLeft, Button, IconButton, PencilSimpleIcon } from "@/components";
 
 export default function ProjectDetail() {
   const { user, userLoading } = useAuth();
@@ -20,7 +20,14 @@ export default function ProjectDetail() {
   return (
     <MainLayout>
       <div className="w-full border-l-4 border-yellow-400 flex justify-between items-center mb-5">
-        <h1 className="font-semibold pl-3">Хандив өгөх төсөл</h1>
+        <div className="flex items-center gap-2 ml-2">
+          <IconButton
+            className="p-[2px]"
+            icon={<ArrowLeft width={20} height={20} />}
+            variant="outline"
+          />
+          <h1 className="font-semibold">Хандив өгөх төсөл</h1>
+        </div>
         <Button icon={<PencilSimpleIcon />}>Янзлах</Button>
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
