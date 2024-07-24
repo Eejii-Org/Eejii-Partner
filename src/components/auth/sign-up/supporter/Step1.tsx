@@ -7,7 +7,7 @@ export const SupporterStep1 = ({ userDetail }: { userDetail: UserType }) => {
   const [selectedUser, setSelectedUser] = useState("");
   const userTypes = [
     {
-      icon: <PersonIcon />,
+      icon: <PersonIcon width={24} height={24} />,
       type: "Хувь хүн",
       value: "individual",
     },

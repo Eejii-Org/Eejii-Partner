@@ -100,7 +100,11 @@ export default function Home() {
               </span>
             </div>
             <p className="my-4">{user.bio}</p>
-            <Button variant="outline" icon={<PencilSimpleIcon />}>
+            <Button
+              component="button"
+              variant="outline"
+              icon={<PencilSimpleIcon />}
+            >
               Засах
             </Button>
           </div>
@@ -129,7 +133,7 @@ const PermitStats = ({ stats }: { stats: any }) => {
     const fetchSubscription = async () => {
       if (!user) return;
       try {
-        const res = await getSubscription(user?.subscriptionId);
+        const res = await getSubscription(user?.subscriptionId as number);
         setSubscriptionData(res && res);
       } catch (e) {
         console.error(e);
