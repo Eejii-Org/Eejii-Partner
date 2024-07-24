@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
@@ -20,7 +21,7 @@ const links = [
     icon: <CategoryIcon width={24} height={24} color="#8EA3B7" />,
   },
   {
-    link: "projects",
+    link: "projects?type=fundraising",
     label: "Хандивын төслүүд",
     icon: <FundraisingIcon width={24} height={24} color="#8EA3B7" />,
   },

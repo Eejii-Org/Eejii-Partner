@@ -1,23 +1,28 @@
-import { ReactNode } from "react";
+import { forwardRef, ReactNode, useId } from "react";
 import { twMerge } from "tailwind-merge";
 
-export const FormInput = ({
-  name,
-  placeHolder,
-  value,
-}: {
-  name: string;
-  placeHolder: string;
-  value?: string | number;
-}) => {
-  return (
-    <input
-      name={name}
-      placeholder={placeHolder}
-      className="outline-none w-full font-light bg-transparent  text-lg focus:text-xl p-2 border-b-2 border-primary-50"
-    />
-  );
-};
+interface Props {
+  type?: "text" | "email" | "password";
+  placeholder?: string;
+}
+
+export const FormInput = forwardRef<HTMLInputElement, Props>(
+  ({ placeholder, type, ...props }, ref) => {
+    const id = useId();
+
+    return (
+      <input
+        type={type}
+        placeholder={placeholder}
+        id={id}
+        ref={ref}
+        {...props}
+        className="outline-none w-full font-light bg-transparent  text-lg focus:text-xl p-2 border-b-2 border-primary-50"
+      />
+    );
+  },
+);
+FormInput.displayName = "FormInput"; // Set displayName
 
 export const NumberedInputWrapper = ({
   number,

@@ -12,7 +12,7 @@ export const UserTypeSelect = ({
   const [selectedUserType, setSeletedUserType] = useState<string | null>(null);
   const userTypes = [
     {
-      icon: <PersonIcon />,
+      icon: <PersonIcon width={24} height={24} />,
       label: "Дэмжигч",
       type: "supporter",
       disabled: false,

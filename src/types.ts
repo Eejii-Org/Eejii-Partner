@@ -1,3 +1,13 @@
+export type HydraCollectionType<T> = {
+  "@context": string;
+  "@id": string;
+  "@type": string;
+  "hydra:totalItems": number;
+  "hydra:member": T;
+  "hydra:meta": {
+    pagination: PaginationType;
+  };
+};
 export type GenderType = "m" | "f";
 export type UserType = {
   address: AddressType;
@@ -134,7 +144,13 @@ export type RoleType = {
   eventUsers: EventUserType[];
 };
 
-export type CategoryType = {};
+export type CategoryType = {
+  "@id": string;
+  "@type": string;
+  id: number;
+  slug: string;
+  name: string;
+};
 
 export type MediaType = {};
 
@@ -152,4 +168,47 @@ export type SubscriptionType = {
   name: string;
   originalPrice: string;
   price: string;
+};
+
+export type ProjectType = {
+  "@id": string;
+  "@type": string;
+  id: number;
+  slug: string;
+  title: string;
+  type: string;
+  link: string | null;
+  description: string;
+  shortDescription: string | null;
+  state: string;
+  isEnabled: boolean;
+  isFeatured: boolean;
+  contact: ContactType;
+  goalAmount: string;
+  currentAmount: string;
+  startTime: string;
+  endTime: string;
+  createdAt: string;
+  updatedAt: string;
+  owner: OwnerType;
+  images: ImageType[];
+  categories: CategoryType[];
+  approvedAt: null;
+};
+
+export type PaginationType = {
+  first: number;
+  current: number;
+  last: number;
+  previous: number;
+  next: number;
+  totalItems: number;
+  itemsPerPage: number;
+};
+
+export type BannerPositionType = {
+  "@id": string;
+  id: number;
+  code: string;
+  name: string;
 };

@@ -4,16 +4,19 @@ export const MoneyInput = ({
   name,
   placeHolder,
   value,
+  setValue,
 }: {
   name: string;
   placeHolder: string;
-  value?: string | number;
+  value?: string;
+  setValue: (value: string) => void;
 }) => {
   return (
     <NumericFormat
       name={name}
-      value={0}
+      value={value}
       placeholder={placeHolder}
+      onValueChange={(values) => setValue(values.value)}
       fixedDecimalScale
       decimalScale={2}
       decimalSeparator="."

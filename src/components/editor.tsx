@@ -18,10 +18,19 @@ import {
 
 import "ckeditor5/ckeditor5.css";
 
-function Editor({ data }: { data: string | null }) {
+function Editor({
+  setData,
+  data,
+}: {
+  setData: (value: string) => void;
+  data: string | null;
+}) {
   return (
     <CKEditor
       editor={ClassicEditor}
+      onChange={(event, editor) => {
+        setData(editor.getData());
+      }}
       config={{
         toolbar: [
           "undo",

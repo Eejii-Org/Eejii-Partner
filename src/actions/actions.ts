@@ -1,7 +1,6 @@
 "use server";
 
-import { BannerPositionType } from "@/components/banner";
-import { UserType } from "@/types";
+import { BannerPositionType, UserType } from "@/types";
 import axios from "axios";
 
 /*
@@ -158,18 +157,18 @@ export const getBanners = async (position: BannerPositionType) => {
 //   );
 // };
 
-// export const getProject = async (slug: string) => {
-//   "use server";
-//   try {
-//     const res = await axios.get(
-//       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${slug}`,
-//     );
-//     return res;
-//   } catch (e) {
-//     console.error(e);
-//     return { data: null };
-//   }
-// };
+export const getProject = async (slug: string) => {
+  "use server";
+  try {
+    const res = await axios.get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${slug}`,
+    );
+    return res;
+  } catch (e) {
+    console.error(e);
+    return { data: null };
+  }
+};
 
 // /*
 //   Partners

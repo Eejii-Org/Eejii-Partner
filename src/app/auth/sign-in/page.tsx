@@ -1,14 +1,26 @@
 "use client";
 
-import { Button, Input } from "@/components";
-import { useRef, useState } from "react";
-import SignInButton from "./button";
+import { Button, Input, SignInButton } from "@/components";
+import { Suspense, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import axios from "axios";
 import { setCookie } from "cookies-next";
 import { useAuth } from "@/providers";
-const SignIn = () => {
+
+const Fallback = () => {
+  return <>placeholder</>;
+};
+
+const Page = () => {
+  return (
+    <Suspense fallback={<Fallback />}>
+      <Comp />
+    </Suspense>
+  );
+};
+
+const Comp = () => {
   const ref = useRef<HTMLFormElement>(null);
   const { getUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
@@ -87,4 +99,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default Page;

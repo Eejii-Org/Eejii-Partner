@@ -24,6 +24,10 @@ body {
     background: var(--background);
 }
 
+a {
+    color: inherit; /* blue colors for links too */
+    text-decoration: none; /* no underline */
+}
 .ripple {
     position: relative;
     overflow: hidden;
