@@ -34,6 +34,8 @@ export * from "./charity";
 export * from "./fundraising";
 export * from "./phone";
 export * from "./mail";
+
+export * from "./users";
 export * from "./log-out";
 export * from "./globe";
 export * from "./category";
@@ -42,3 +44,7 @@ export * from "./settings";
 export * from "./map-pin";
 export * from "./pencil-simple";
 export * from "./warning-circle";
+export * from "./single-check";
+export * from "./eye";
+export * from "./book-open";
+export * from "./envelope";

@@ -25,3 +25,5 @@ export * from "./money-input";
 export * from "./progress";
 export * from "./drag-and-drop";
 export * from "./editor";
+export * from "./tab";
+export * from "./modal";

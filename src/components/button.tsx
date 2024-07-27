@@ -5,37 +5,71 @@ import React from "react";
 import { ButtonHTMLAttributes } from "react";
 import { useFormStatus } from "react-dom";
 
+const getColorVariants = (color: string, variant: "outline" | "default") => {
+  if (variant === "outline") {
+    let className = "";
+    switch (color) {
+      case "red":
+        className = `bg-none border-2 border-red-500 hover:bg-red-200 text-red-700`;
+        break;
+      case "yellow":
+        className = `bg-none border-2 border-${color}-700`;
+        break;
+      case "gray":
+        className = `bg-none border-2 border-${color}-700`;
+        break;
+      case "primary":
+        className = `bg-none border-2 border-primary-800 text-primary hover:bg-[#3c888d33]`;
+        break;
+    }
+    return className;
+  } else {
+    let className = "";
+    switch (color) {
+      case "red":
+        className = `bg-red-500 hover:bg-red-400 text-white`;
+        break;
+      case "yellow":
+        className = `bg-red-500 hover:bg-red-400 text-white`;
+        break;
+      case "gray":
+        className = `bg-primary-800 hover:bg-primary-700 text-white`;
+        break;
+      case "primary":
+        className = `bg-primary-800 hover:bg-primary text-white`;
+        break;
+    }
+    return className;
+  }
+};
+
 interface ButtonPropsType extends ButtonHTMLAttributes<HTMLButtonElement> {
   label?: string;
   icon?: React.ReactNode;
   variant?: "outline" | "default";
   href?: string;
   component: "button" | "link";
+  color?: "red" | "yellow" | "primary" | "gray";
 }
 
 export const Button = (props: ButtonPropsType) => {
   const buttonAttributes = excludeKeys(props, ["className"]);
-  const styledIcon = props.icon
-    ? React.cloneElement(props?.icon as React.ReactElement, {
-        color: props.variant === "outline" ? "#3c888d" : "white",
-      })
-    : null;
 
-  const variantClassName =
-    props.variant && props.variant === "outline"
-      ? "bg-none border border-primary border-2 text-primary hover:bg-[#3c888d33]"
-      : "bg-primary hover:bg-[#8AB8BB] text-white";
+  const variantClassName = getColorVariants(
+    props.color ?? "primary",
+    props.variant ?? "default",
+  );
 
   if (props.component === "link") {
     return (
       <Link
         href={props.href}
-        className={`${variantClassName} flex items-center gap-2 px-3 py-1 rounded-full tracking-wider  transition-all ${
+        className={`${variantClassName} flex items-center gap-2 px-3 py-1 rounded-full tracking-wider transition-all ${
           props.className ? props.className : ""
         }`}
         {...buttonAttributes}
       >
-        {props.icon && styledIcon}
+        {props.icon}
         {props.children}
       </Link>
     );
@@ -47,7 +81,7 @@ export const Button = (props: ButtonPropsType) => {
         }`}
         {...buttonAttributes}
       >
-        {props.icon && styledIcon}
+        {props.icon}
         {props.children}
       </button>
     );

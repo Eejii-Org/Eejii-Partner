@@ -67,8 +67,12 @@ export type OwnerType = {
   images: ImageType[];
   phoneNumber: string;
   type: string;
+  level: number | null;
   username: string;
-  organizationType: string;
+  gender: string | null;
+  introduction: string | null;
+  address: AddressType | null;
+  organizationType: string | null;
 };
 export type ContactType = {
   email: string;
@@ -112,6 +116,18 @@ export type EventUserType = {
   state: "pending" | "accepted" | "denied";
   requestType: "invitation" | "request";
   userType: "volunteer";
+};
+
+export type ProjectUserType = {
+  "@id": string;
+  "@type": string;
+  id: number;
+  project: string;
+  owner: OwnerType;
+  state: "pending" | "accepted" | "denied";
+  requestType: "invitation" | "request";
+  userType: "volunteer";
+  createdAt: string;
 };
 
 export type ImageType = {

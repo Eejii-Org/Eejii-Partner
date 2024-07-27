@@ -60,7 +60,6 @@ export const DragAndDropFileUpload = ({
             type="file"
             className="hidden"
             onChange={(e) => {
-              console.log(e.target.files);
               let files = e.target.files;
               if (files && files[0]) {
                 // let blobUrl = URL.createObjectURL(files[0]);

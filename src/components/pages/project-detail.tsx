@@ -1,7 +1,13 @@
 "use client";
 import Image from "next/image";
 import { MainLayout } from "@/components/main-layout";
-import { ArrowLeft, Button, IconButton, PencilSimpleIcon } from "@/components";
+import {
+  ArrowLeft,
+  Button,
+  IconButton,
+  PencilSimpleIcon,
+  UsersIcon,
+} from "@/components";
 import { formatPrice } from "@/utils";
 import { format } from "date-fns";
 import { useFetchProject } from "@/lib";
@@ -9,7 +15,6 @@ import { useFetchProject } from "@/lib";
 export const ProjectDetailComp = ({ slug }: { slug: string }) => {
   const { data: project, isLoading } = useFetchProject(slug);
   const state = project?.state;
-  console.log(project);
 
   const thumbnailImage =
     project?.images?.find((img: any) => img.type == "thumbnail")?.path ||
@@ -33,13 +38,23 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
               : "Хандив өгөх төсөл"}
           </h1>
         </div>
-        <Button
-          component="link"
-          icon={<PencilSimpleIcon color="white" />}
-          href={`/projects/${slug}/edit?type=${project?.type}`}
-        >
-          Янзлах
-        </Button>
+        <div className="flex gap-3">
+          <Button
+            component="link"
+            variant="outline"
+            icon={<UsersIcon color="#3c888d" />}
+            href={`/projects/${slug}/users`}
+          >
+            Төслийн хамтрагчид
+          </Button>
+          <Button
+            component="link"
+            icon={<PencilSimpleIcon color="white" />}
+            href={`/projects/${slug}/edit?type=${project?.type}`}
+          >
+            Янзлах
+          </Button>
+        </div>
       </div>
       <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
         <div
