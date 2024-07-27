@@ -1,5 +1,5 @@
 "use client";
-import { Banner, Button, ChevronRightIcon } from "@/components";
+import { Banner, Button, ChevronRightIcon, StateTab } from "@/components";
 import { Loader } from "@/components/loader";
 import { MainLayout } from "@/components/main-layout";
 import { useFetchMyProjects } from "@/lib";
@@ -32,6 +32,26 @@ export default function Projects() {
   useEffect(() => {
     refetch();
   }, [type, search, page, state]);
+
+  const states = [
+    {
+      value: null,
+      label: "Бүгд",
+    },
+    {
+      value: "new",
+      label: "Шинэ",
+    },
+    {
+      value: "pending",
+      label: "Хүлээгдэж буй",
+    },
+    {
+      value: "done",
+      label: "Дууссан",
+    },
+  ];
+
   return (
     <MainLayout>
       <div className="space-y-5">
@@ -93,7 +113,7 @@ export default function Projects() {
           </p>
         </div>
         {/* FILTER BADGE */}
-        <Filter state={state} type={type} />
+        <StateTab states={states} baseUri={`/projects?type=${type}&page=1`} />
         {/* PROJECTS LIST */}
         <div className="space-y-5">
           {projects &&
@@ -146,55 +166,6 @@ const buildUrl = (
   }
 
   return `/projects?${params.toString()}`;
-};
-
-const Filter = ({
-  state,
-  type,
-}: {
-  state: string | null;
-  type: string | null;
-}) => {
-  const router = useRouter();
-  const states = [
-    {
-      value: null,
-      label: "Бүгд",
-    },
-    {
-      value: "new",
-      label: "Шинэ",
-    },
-    {
-      value: "pending",
-      label: "Хүлээгдэж буй",
-    },
-    {
-      value: "done",
-      label: "Дууссан",
-    },
-  ];
-  return (
-    <div className="flex flex-wrap gap-3">
-      {states.map((s, i) => (
-        <button
-          key={i}
-          className={`border rounded-full px-2 py-1 transition-all ease-in duration-150
-            ${state === s.value ? "border-primary-800 px-6 tracking-widest text-primary-800 hover:bg-primary-100 font-semibold" : "border-slate-600 text-slate-600 hover:bg-slate-200"}`}
-          type="button"
-          onClick={() => {
-            if (s.value == null) {
-              router.push(`/projects?type=${type}&page=1`);
-            } else {
-              router.push(`/projects?type=${type}&state=${s.value}&page=1`);
-            }
-          }}
-        >
-          <span>{s.label}</span>
-        </button>
-      ))}
-    </div>
-  );
 };
 
 const ProjectCard = ({ project }: { project: ProjectType }) => {

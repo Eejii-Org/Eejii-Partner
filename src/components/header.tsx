@@ -51,7 +51,7 @@ export const Header = () => {
   }
 
   return (
-    <header className="bg-white fixed w-full z-50 shadow-sm">
+    <header className="bg-white fixed w-full z-30 shadow-sm">
       <div className="mx-auto px-10 flex flex-row justify-between py-[12px] items-center">
         <Link href="/">
           <div className="relative w-[160px] h-[42px]">

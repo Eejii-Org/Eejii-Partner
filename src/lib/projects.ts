@@ -1,6 +1,11 @@
 "use client";
 import { ProjectInputs } from "@/schemas/projectSchema";
-import { HydraCollectionType, ImageType, ProjectType } from "@/types";
+import {
+  HydraCollectionType,
+  ImageType,
+  ProjectType,
+  ProjectUserType,
+} from "@/types";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { getCookie } from "cookies-next";
@@ -35,6 +40,36 @@ export const fetchMyProjects = async (filters: any) => {
 export const fetchProject = async (slug: string) => {
   const res = await axios
     .get(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${slug}`)
+    .catch((error) => {
+      if (error.response) {
+        throw new Error(error.response.data.data);
+      }
+    });
+
+  return res?.data;
+};
+
+export const fetchProjectUsers = async (slug: string, filters: any) => {
+  const token = getCookie("token");
+  let queryString = ``;
+
+  if (filters) {
+    Object.keys(filters).forEach((key) => {
+      const value = filters[key];
+      if (value !== null && value !== undefined) {
+        queryString += `&${key}=${encodeURIComponent(value)}`;
+      }
+    });
+  }
+  const res = await axios
+    .get(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${slug}/projectUsers?${queryString}`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
     .catch((error) => {
       if (error.response) {
         throw new Error(error.response.data.data);
@@ -94,6 +129,50 @@ export const editProject = async (slug: string, formData: ProjectInputs) => {
   return res?.data;
 };
 
+export const acceptProjectUser = async (slug: string, id: number) => {
+  const token = getCookie("token");
+
+  const res = await axios
+    .put(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${slug}/projectUsers/${id}/accept`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .catch((error) => {
+      if (error.response) {
+        throw new Error(error.response.data.data);
+      }
+    });
+
+  return res?.data;
+};
+
+export const denyProjectUser = async (slug: string, id: number) => {
+  const token = getCookie("token");
+
+  const res = await axios
+    .put(
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/projects/${slug}/projectUsers/${id}/deny`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      },
+    )
+    .catch((error) => {
+      if (error.response) {
+        throw new Error(error.response.data.data);
+      }
+    });
+
+  return res?.data;
+};
+
 export const addProjectImage = async (
   type: string,
   slug: string,
@@ -116,9 +195,7 @@ export const addProjectImage = async (
       },
     )
     .catch((error) => {
-      console.log(error);
       if (error.response) {
-        console.log(error.response.data.data);
         throw new Error(error.response.data.data);
       }
     });
@@ -139,9 +216,7 @@ export const deleteProjectImage = async (slug: string, id: number) => {
       },
     )
     .catch((error) => {
-      console.log(error);
       if (error.response) {
-        console.log(error.response.data.data);
         throw new Error(error.response.data.data);
       }
     });
@@ -158,6 +233,13 @@ export const useFetchProject = (slug: string) => {
   return useQuery<ProjectType, Error>({
     queryKey: ["project", slug],
     queryFn: () => fetchProject(slug),
+  });
+};
+
+export const useFetchProjectUsers = (slug: string, filters: any) => {
+  return useQuery<HydraCollectionType<ProjectUserType[]>, Error>({
+    queryKey: ["projectUsers", slug],
+    queryFn: () => fetchProjectUsers(slug, filters),
   });
 };
 
@@ -198,5 +280,19 @@ export const useDeleteProjectImage = () => {
   return useMutation<void, Error, { slug: string; id: number }>({
     mutationKey: ["deleteProjectImage"],
     mutationFn: ({ slug, id }) => deleteProjectImage(slug, id),
+  });
+};
+
+export const useDenyProjectUser = () => {
+  return useMutation<any, Error, { slug: string; id: number }>({
+    mutationKey: ["createProject"],
+    mutationFn: ({ slug, id }) => denyProjectUser(slug, id),
+  });
+};
+
+export const useAcceptProjectUser = () => {
+  return useMutation<any, Error, { slug: string; id: number }>({
+    mutationKey: ["createProject"],
+    mutationFn: ({ slug, id }) => acceptProjectUser(slug, id),
   });
 };
