@@ -17,36 +17,37 @@ import React from "react";
 const links = [
   {
     link: "/",
+    slug: "/",
     label: "Нүүр",
     icon: <CategoryIcon width={24} height={24} color="#8EA3B7" />,
   },
   {
-    link: "projects?type=fundraising",
+    link: "/projects?type=fundraising",
+    slug: "projects",
     label: "Хандивын төслүүд",
     icon: <FundraisingIcon width={24} height={24} color="#8EA3B7" />,
   },
   {
-    link: "events",
+    link: "/events?type=event",
+    slug: "events",
     label: "Арга хэмжээ",
     icon: <EventsIcon width={24} height={24} color="#8EA3B7" />,
   },
   {
-    link: "volunteering-events",
-    label: "Сайн дурын арга хэмжээ",
-    icon: <VolunteeringIcon width={24} height={24} color="#8EA3B7" />,
-  },
-  {
-    link: "donations",
+    link: "/donations",
+    slug: "donations",
     label: "Миний хандив",
     icon: <CharityIcon width={24} height={24} color="#8EA3B7" />,
   },
   {
-    link: "media",
+    link: "/media",
+    slug: "media",
     label: "Мэдээ",
     icon: <NewspaperIcon width={24} height={24} color="#8EA3B7" />,
   },
   {
-    link: "settings",
+    link: "/settings",
+    slug: "settings",
     label: "Тохиргоо",
     icon: <SettingsIcon width={24} height={24} color="#8EA3B7" />,
   },
@@ -56,8 +57,8 @@ export const Sidebar = () => {
   const pathname = usePathname();
   const explodedPath = pathname.split("/");
   const path = explodedPath[1] === "" ? "/" : explodedPath[1];
-  const activeLink = links.find((l) => l.link === path);
-  const [active, _] = useState<string | null | undefined>(activeLink?.link);
+  const activeLink = links.find((l) => l.slug === path);
+  const [active, _] = useState<string | null | undefined>(activeLink?.slug);
 
   return (
     <div className="hidden md:flex shadow-md w-[320px]  min-h-[800px]">
@@ -69,7 +70,7 @@ export const Sidebar = () => {
               key={index}
               icon={link.icon}
               // onClick={() => setActive(link.link)}
-              active={active === link.link}
+              active={active === link.slug}
             >
               {link.label}
             </NavLink>
