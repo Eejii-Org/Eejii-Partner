@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Facebook, Instagram } from "./icons";
+import { Facebook } from "./icons/facebook";
+import { Instagram } from "./icons/instagram";
 
 export const Footer = () => {
   const FooterItems = [

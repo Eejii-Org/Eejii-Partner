@@ -6,18 +6,18 @@ import { Button } from "./button";
 import { DragAndDropFileUpload } from "./drag-and-drop";
 import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
-import { ArrowRight, CalendarIcon, Close } from "./icons";
 import { MoneyInput } from "./money-input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryType, ProjectType } from "@/types";
-import { getCategories } from "@/actions";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useDeleteProjectImage } from "@/lib";
 import { IconButton } from "./icon-button";
 import DateTimePicker from "react-datetime-picker";
-import { formatDateTimeLocal } from "@/utils";
+import { useDeleteProjectImage } from "@/lib/projects";
+import { getCategories } from "@/actions/actions";
+import { Close } from "./icons/close";
+import { ArrowRight } from "./icons/arrow-right";
 
 export const FundraisingForm = ({
   fundraising,
@@ -122,6 +122,10 @@ export const FundraisingForm = ({
     };
     fetchCategories();
   }, []);
+
+  function formatDateTimeLocal(arg0: Date): string {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">

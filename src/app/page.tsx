@@ -1,21 +1,21 @@
 "use client";
-import {
-  Button,
-  EventsIcon,
-  MapPinIcon,
-  PencilSimpleIcon,
-  ProgressBar,
-} from "@/components";
+
 import { Loader } from "@/components/loader";
 import { MainLayout } from "@/components/main-layout";
-import { useAuth } from "@/providers";
-import { redirect, useRouter } from "next/navigation";
+import { useAuth } from "@/providers/auth-provider";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { getHomeStats, getSubscription } from "@/actions";
+import { getHomeStats } from "@/actions/partner-actions";
 import { useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { SubscriptionType } from "@/types";
-import { formatPrice } from "@/utils";
+import { formatPrice } from "@/utils/format-price";
+import { EventsIcon } from "@/components/icons/events";
+import { MapPinIcon } from "@/components/icons/map-pin";
+import { Button } from "@/components/button";
+import { PencilSimpleIcon } from "@/components/icons/pencil-simple";
+import { getSubscription } from "@/actions/actions";
+import { ProgressBar } from "@/components/progress";
 
 export default function Home() {
   const router = useRouter();

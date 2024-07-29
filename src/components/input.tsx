@@ -1,6 +1,6 @@
 /* Global Input Element */
 
-import { excludeKeys } from "@/utils";
+import { excludeKeys } from "@/utils/exclude-keys";
 import { InputHTMLAttributes } from "react";
 
 // Props

@@ -6,17 +6,18 @@ import Image from "next/image";
 import { DragAndDropFileUpload } from "./drag-and-drop";
 import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
-import { ArrowRight, CalendarIcon, Close } from "./icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryType, ProjectType } from "@/types";
-import { getCategories } from "@/actions";
+import { getCategories } from "@/actions/actions";
 import { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { formatDateTimeLocal } from "@/utils";
+import { formatDateTimeLocal } from "@/utils/to-date-string";
 import { IconButton } from "./icon-button";
-import { useDeleteProjectImage } from "@/lib";
+import { useDeleteProjectImage } from "@/lib/projects";
 import { useQueryClient } from "@tanstack/react-query";
+import { Close } from "./icons/close";
+import { ArrowRight } from "./icons/arrow-right";
 
 export const GrantFundraisingForm = ({
   grantFundraising,

@@ -1,20 +1,18 @@
 "use client";
 
-import {
-  ArrowLeft,
-  IconButton,
-  MainLayout,
-  ToolTip,
-  EventForm,
-  VolunteeringEventForm,
-} from "@/components";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { EventInputs } from "@/schemas/eventSchema";
-import { useAddEventImage, useCreateEvent } from "@/lib";
 import { showToast } from "@/utils/show-toast";
 import { EventType } from "@/types";
+import { useAddEventImage, useCreateEvent } from "@/lib/events";
+import { MainLayout } from "@/components/main-layout";
+import { IconButton } from "@/components/icon-button";
+import { ArrowLeft } from "@/components/icons/arrow-left";
+import { VolunteeringEventForm } from "@/components/volunteering-event-form";
+import { EventForm } from "@/components/event-form";
+import { ToolTip } from "@/components/tool-tip";
 
 const NewEvent = () => {
   const router = useRouter();

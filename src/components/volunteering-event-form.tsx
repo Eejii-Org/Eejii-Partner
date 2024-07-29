@@ -6,17 +6,18 @@ import Image from "next/image";
 import { DragAndDropFileUpload } from "./drag-and-drop";
 import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
-import { ArrowRight, CalendarIcon, Close } from "./icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryType, EventType } from "@/types";
-import { getCategories } from "@/actions";
+import { getCategories } from "@/actions/actions";
 import { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { formatDateTimeLocal } from "@/utils";
+import { formatDateTimeLocal } from "@/utils/to-date-string";
 import { IconButton } from "./icon-button";
-import { useDeleteEventImage } from "@/lib";
+import { useDeleteEventImage } from "@/lib/events";
 import { useQueryClient } from "@tanstack/react-query";
+import { ArrowRight } from "./icons/arrow-right";
+import { Close } from "./icons/close";
 
 export const VolunteeringEventForm = ({
   event,

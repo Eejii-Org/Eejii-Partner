@@ -1,20 +1,18 @@
 "use client";
 
-import {
-  ArrowLeft,
-  IconButton,
-  MainLayout,
-  ToolTip,
-  FundraisingForm,
-  GrantFundraisingForm,
-} from "@/components";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { ProjectInputs } from "@/schemas/projectSchema";
-import { useAddProjectImage, useCreateProject } from "@/lib";
 import { showToast } from "@/utils/show-toast";
 import { ProjectType } from "@/types";
+import { useAddProjectImage, useCreateProject } from "@/lib/projects";
+import { MainLayout } from "@/components/main-layout";
+import { IconButton } from "@/components/icon-button";
+import { ArrowLeft } from "@/components/icons/arrow-left";
+import { ToolTip } from "@/components/tool-tip";
+import { FundraisingForm } from "@/components/fundraising-form";
+import { GrantFundraisingForm } from "@/components/grant-fundraising-form";
 
 const NewProject = () => {
   const router = useRouter();

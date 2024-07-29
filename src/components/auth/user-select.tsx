@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { PersonIcon, PartnerIcon, VolunteerIcon } from "../icons";
+import { PersonIcon } from "../icons/person";
+import { PartnerIcon } from "../icons/partner";
 
 export const UserSelect = () => {
   const userTypes = [

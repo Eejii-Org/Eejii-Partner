@@ -1,4 +1,4 @@
-import { EditProjectComp } from "@/components";
+import { EditProjectComp } from "@/components/pages/project-edit";
 
 const EditProject = async ({ params }: { params: { slug: string } }) => {
   return <EditProjectComp slug={params.slug} />;

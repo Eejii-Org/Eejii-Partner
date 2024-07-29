@@ -1,18 +1,15 @@
 "use client";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { twMerge } from "tailwind-merge";
-import {
-  CategoryIcon,
-  CharityIcon,
-  EventsIcon,
-  FundraisingIcon,
-  NewspaperIcon,
-  SettingsIcon,
-  VolunteeringIcon,
-} from "./icons";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import React from "react";
+import { CategoryIcon } from "./icons/category";
+import { FundraisingIcon } from "./icons/fundraising";
+import { EventsIcon } from "./icons/events";
+import { CharityIcon } from "./icons/charity";
+import { NewspaperIcon } from "./icons/newspaper";
+import { SettingsIcon } from "./icons/settings";
 
 const links = [
   {

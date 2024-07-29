@@ -1,8 +1,8 @@
 "use client";
-import Link from "next/link";
-import { PersonIcon, PartnerIcon, VolunteerIcon } from "../../icons";
 import { Button } from "@/components/button";
-import { useEffect, useState } from "react";
+import { PartnerIcon } from "@/components/icons/partner";
+import { PersonIcon } from "@/components/icons/person";
+import { useState } from "react";
 
 export const UserTypeSelect = ({
   onSelect,

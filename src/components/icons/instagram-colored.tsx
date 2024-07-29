@@ -1,9 +1,4 @@
-import { IconPropsType } from ".";
-
-export const InstagramColored = ({
-  width = 24,
-  height = 24,
-}: IconPropsType) => {
+export const InstagramColored = ({ width = 24, height = 24 }) => {
   return (
     <svg
       width={width}

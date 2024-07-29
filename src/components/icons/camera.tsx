@@ -1,11 +1,9 @@
-import { IconPropsType } from "./index";
-
 export const CameraIcon = ({
   width = 24,
   height = 24,
   color = "black",
   stroke = 2,
-}: IconPropsType) => (
+}) => (
   <svg
     width={width}
     height={height}

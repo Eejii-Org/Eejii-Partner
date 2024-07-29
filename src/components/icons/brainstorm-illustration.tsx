@@ -1,9 +1,4 @@
-import { IconPropsType } from ".";
-
-export const BrainstormIllustration = ({
-  width = 256,
-  height = 256,
-}: IconPropsType) => (
+export const BrainstormIllustration = ({ width = 256, height = 256 }) => (
   <svg
     width="411"
     height="237"

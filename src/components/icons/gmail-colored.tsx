@@ -1,6 +1,4 @@
-import { IconPropsType } from ".";
-
-export const GmailColored = ({ width = 24, height = 18 }: IconPropsType) => {
+export const GmailColored = ({ width = 24, height = 18 }) => {
   return (
     <svg
       width={width}

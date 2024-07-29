@@ -1,4 +1,4 @@
-import { WarningCircleIcon } from "./icons";
+import { WarningCircleIcon } from "./icons/warning-circle";
 
 export const ToolTip = ({ text }: { text: string }) => {
   return (

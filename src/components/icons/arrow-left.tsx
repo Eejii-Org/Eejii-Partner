@@ -1,10 +1,4 @@
-import { IconPropsType } from "./index";
-
-export const ArrowLeft = ({
-  color = "white",
-  width = 24,
-  height = 24,
-}: IconPropsType) => (
+export const ArrowLeft = ({ color = "white", width = 24, height = 24 }) => (
   <svg
     width={width}
     height={height}
