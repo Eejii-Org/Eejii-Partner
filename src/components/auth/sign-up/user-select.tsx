@@ -52,6 +52,7 @@ export const UserTypeSelect = ({
       </div>
       <div className="flex justify-center mt-8">
         <Button
+          component="button"
           disabled={!selectedUserType}
           className={`w-80 ${
             selectedUserType === null

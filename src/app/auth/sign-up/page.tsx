@@ -222,6 +222,7 @@ const Comp = () => {
               )}
               <div className="flex flex-row gap-4 w-full md:w-fit">
                 <Button
+                  component="button"
                   className="border border-primary bg-transparent !text-primary hover:bg-gray-200 flex-1 md:flex-auto md:min-w-64"
                   type="button"
                   onClick={() =>
@@ -231,6 +232,7 @@ const Comp = () => {
                   Буцах
                 </Button>
                 <Button
+                  component="button"
                   type="submit"
                   className="flex-1 md:flex-auto md:min-w-64"
                 >

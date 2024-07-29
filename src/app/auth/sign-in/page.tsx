@@ -88,8 +88,9 @@ const Comp = () => {
           </Link>
           <hr color="red" className="w-full my-2" />
           <Button
+            component="link"
             className="border border-primary bg-transparent !text-primary hover:bg-gray-200"
-            onClick={() => router.push("/auth/sign-up")}
+            href="/auth/sign-up"
           >
             Бүртгүүлэх
           </Button>
