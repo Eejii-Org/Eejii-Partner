@@ -97,8 +97,8 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
                   Холбоо барих
                 </td>
                 <td>
-                  <p>{project?.contact.email}</p>
-                  <p>{project?.contact.phoneNumber}</p>
+                  <p>{project?.contact?.email}</p>
+                  <p>{project?.contact?.phoneNumber}</p>
                 </td>
               </tr>
               <tr className="border-b h-10">

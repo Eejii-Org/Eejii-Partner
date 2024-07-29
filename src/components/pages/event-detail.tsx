@@ -94,8 +94,8 @@ export const EventDetailComp = ({ slug }: { slug: string }) => {
                   Холбоо барих
                 </td>
                 <td>
-                  <p>{event?.contact.email}</p>
-                  <p>{event?.contact.phoneNumber}</p>
+                  <p>{event?.contact?.email}</p>
+                  <p>{event?.contact?.phoneNumber}</p>
                 </td>
               </tr>
               <tr className="border-b h-10">
