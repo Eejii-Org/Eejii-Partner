@@ -89,8 +89,8 @@ const NewProject = () => {
         <div className="bg-white border-2 rounded-2xl p-5 flex items-center gap-5">
           <IconButton
             component="link"
-            icon={<ArrowLeft />}
-            variant="outline-gray"
+            icon={<ArrowLeft color="#3c888d" />}
+            variant="outline"
             href={`/projects`}
           />
           <p className="font-semibold text-lg">

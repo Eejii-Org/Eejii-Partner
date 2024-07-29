@@ -115,6 +115,7 @@ export type EventUserType = {
   owner: OwnerType;
   state: "pending" | "accepted" | "denied";
   requestType: "invitation" | "request";
+  createdAt: "string";
   userType: "volunteer";
 };
 

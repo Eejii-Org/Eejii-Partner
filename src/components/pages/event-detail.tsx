@@ -10,17 +10,17 @@ import {
 } from "@/components";
 import { formatPrice } from "@/utils";
 import { format } from "date-fns";
-import { useFetchProject } from "@/lib";
+import { useFetchEvent } from "@/lib";
 
-export const ProjectDetailComp = ({ slug }: { slug: string }) => {
-  const { data: project, isLoading } = useFetchProject(slug);
-  const state = project?.state;
+export const EventDetailComp = ({ slug }: { slug: string }) => {
+  const { data: event, isLoading } = useFetchEvent(slug);
+  const state = event?.state;
 
   const thumbnailImage =
-    project?.images?.find((img: any) => img.type == "thumbnail")?.path ||
+    event?.images?.find((img: any) => img.type == "thumbnail")?.path ||
     "/assets/placeholder.svg";
 
-  if (isLoading && !project) return "...loading";
+  if (isLoading && !event) return "...loading";
   return (
     <MainLayout>
       <div className="w-full border-l-4 border-yellow-400 flex justify-between items-center mb-5">
@@ -29,13 +29,11 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
             component="link"
             className="p-[2px]"
             icon={<ArrowLeft width={20} height={20} color="#3c888d" />}
-            href={`/projects?type=fundraising`}
+            href={`/events?type=event`}
             variant="outline"
           />
           <h1 className="font-semibold">
-            {project?.type === "fundraising"
-              ? "Хандив олох төсөл"
-              : "Хандив өгөх төсөл"}
+            {event?.type === "event" ? "Арга хэмжээ" : "Сайн дурын арга хэмжээ"}
           </h1>
         </div>
         <div className="flex gap-3">
@@ -43,14 +41,14 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
             component="link"
             variant="outline"
             icon={<UsersIcon color="#3c888d" />}
-            href={`/projects/${slug}/users`}
+            href={`/events/${slug}/users`}
           >
             Төслийн хамтрагчид
           </Button>
           <Button
             component="link"
             icon={<PencilSimpleIcon color="white" />}
-            href={`/projects/${slug}/edit?type=${project?.type}`}
+            href={`/events/${slug}/edit?type=${event?.type}`}
           >
             Янзлах
           </Button>
@@ -71,7 +69,7 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
             <div className="absolute top-5 left-0 w-full transition-all ease-in duration-200 group-hover:opacity-0">
               <div className="flex justify-center">
                 <p className="text-md font-semibold uppercase text-amber-500 bg-white rounded-xl p-3 bg-opacity-80">
-                  {project?.state}
+                  {event?.state}
                 </p>
               </div>
             </div>
@@ -80,27 +78,27 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
             <tbody>
               <tr className="border-b h-10">
                 <td className="font-medium ">Зохион байгуулагч</td>
-                <td>{project?.owner.username}</td>
+                <td>{event?.owner.username}</td>
               </tr>
-              {project?.type === "fundraising" && (
+              {/* {event?.type === "event" && (
                 <tr className="border-b h-10">
                   <td className="font-medium ">Зорилтод босгох дүн</td>
-                  <td>{formatPrice(+project?.goalAmount, "MNT")}</td>
+                  <td>{formatPrice(+event?.goalAmount, "MNT")}</td>
                 </tr>
-              )}
-              {project?.type === "fundraising" && (
+              )} */}
+              {/* {event?.type === "event" && (
                 <tr className="border-b h-10">
                   <td className="font-medium ">Босгосон дүн</td>
-                  <td>{formatPrice(+project?.currentAmount, "MNT")}</td>
+                  <td>{formatPrice(+event?.currentAmount, "MNT")}</td>
                 </tr>
-              )}
+              )} */}
               <tr className="border-b h-10">
                 <td className="font-medium flex items-start h-full">
                   Холбоо барих
                 </td>
                 <td>
-                  <p>{project?.contact.email}</p>
-                  <p>{project?.contact.phoneNumber}</p>
+                  <p>{event?.contact.email}</p>
+                  <p>{event?.contact.phoneNumber}</p>
                 </td>
               </tr>
               <tr className="border-b h-10">
@@ -108,7 +106,7 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
                   Богино тайлбар
                 </td>
                 <td>
-                  <p>{project?.shortDescription}</p>
+                  <p>{event?.shortDescription}</p>
                 </td>
               </tr>
             </tbody>
@@ -119,7 +117,7 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
             <h3 className="border-b pb-2 font-semibold">Дэлгэрэнгүй тайлбар</h3>
             <div
               className="html-content"
-              dangerouslySetInnerHTML={{ __html: project?.description ?? "" }}
+              dangerouslySetInnerHTML={{ __html: event?.description ?? "" }}
             />
           </div>
           <div className="bg-white border rounded-2xl p-5 space-y-2">
@@ -127,16 +125,16 @@ export const ProjectDetailComp = ({ slug }: { slug: string }) => {
               Эхлэх болон дуусах хугацаа
             </h3>
             <p>
-              {format(new Date(project?.startTime as string), "E LLLL dd, y")} -{" "}
-              {format(new Date(project?.endTime as string), "E LLLL dd, y")}{" "}
+              {format(new Date(event?.startTime as string), "E LLLL dd, y")} -{" "}
+              {format(new Date(event?.endTime as string), "E LLLL dd, y")}{" "}
               (UTC+08:00) Asia/Ulaanbaatar
             </p>
           </div>
           <div className="bg-white border rounded-2xl p-5 space-y-2">
             <h3 className="border-b pb-2 font-semibold">Ангилал</h3>
             <div className="flex flex-wrap gap-3">
-              {project?.categories && project.categories.length > 0
-                ? project?.categories.map((category, i) => (
+              {event?.categories && event.categories.length > 0
+                ? event?.categories.map((category, i) => (
                     <span
                       key={i}
                       className={`flex items-center text-sm border rounded-full px-2 py-1 transition-all ease-in duration-150 border-none bg-primary-800 tracking-widest text-white font-semibold`}

@@ -17,8 +17,8 @@ export const volunteeringEventSchema = z.object({
   startTime: z.string().min(1, { message: "Choose start time" }),
   endTime: z.string().min(1, { message: "Choose end time" }),
   contact: contactSchema,
-  volunteeringHours: z.number().min(1, { message: "Enter volunteering hours" }),
-  roles: z.array(z.object({ name: z.string(), slots: z.string() })),
+  volunteeringHours: z.string().min(1, { message: "Enter volunteering hours" }),
+  roles: z.array(z.object({ name: z.string(), slots: z.string() })).optional(),
 });
 
 export const eventSchema = z.object({
@@ -38,9 +38,9 @@ export type EventInputs = {
   categories: string[];
   goalAmount?: string;
   currentAmount?: string;
-  link?: string;
   startTime: string;
   endTime: string;
+  volunteeringHours?: number;
   contact: {
     email: string;
     phoneNumber: string;

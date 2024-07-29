@@ -10,6 +10,8 @@ export * from "./footer";
 export * from "./banner";
 export * from "./main-layout";
 
+export * from "./event-form";
+export * from "./volunteering-event-form";
 export * from "./fundraising-form";
 export * from "./grant-fundraising-form";
 
