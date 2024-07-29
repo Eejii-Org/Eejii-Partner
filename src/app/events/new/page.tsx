@@ -5,18 +5,18 @@ import {
   IconButton,
   MainLayout,
   ToolTip,
-  FundraisingForm,
-  GrantFundraisingForm,
+  EventForm,
+  VolunteeringEventForm,
 } from "@/components";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import { ProjectInputs } from "@/schemas/projectSchema";
-import { useAddProjectImage, useCreateProject } from "@/lib";
+import { EventInputs } from "@/schemas/eventSchema";
+import { useAddEventImage, useCreateEvent } from "@/lib";
 import { showToast } from "@/utils/show-toast";
-import { ProjectType } from "@/types";
+import { EventType } from "@/types";
 
-const NewProject = () => {
+const NewEvent = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -24,17 +24,17 @@ const NewProject = () => {
   const [thumbnail, setThumbnail] = useState<File | undefined>();
   const [cover, setCover] = useState<File | undefined>();
 
-  const { mutate, isPending: isProjectLoading } = useCreateProject();
-  const { mutate: addImage, isPending: isImageLoading } = useAddProjectImage();
+  const { mutate, isPending: isEventLoading } = useCreateEvent();
+  const { mutate: addImage, isPending: isImageLoading } = useAddEventImage();
 
-  function handleSubmit(type: string, data: ProjectInputs) {
+  function handleSubmit(type: string, data: EventInputs) {
     mutate(
       {
-        type: type === "fundraising" ? "fundraising" : "grant_fundraising",
+        type: type === "event" ? "event" : "volunteering_event",
         formData: data,
       },
       {
-        onSuccess: (data: ProjectType) => {
+        onSuccess: (data: EventType) => {
           thumbnail &&
             addImage(
               { type: "thumbnail", file: thumbnail, slug: data.slug },
@@ -45,8 +45,8 @@ const NewProject = () => {
               },
             );
           cover && addImage({ type: "cover", file: cover, slug: data.slug });
-          showToast("success", "Successfully created Fundraising");
-          router.push(`/projects?type=fundraising`);
+          showToast("success", "Successfully created event");
+          router.push(`/events?type=event`);
         },
         onError: (err) => {
           showToast("error", err.message);
@@ -63,21 +63,19 @@ const NewProject = () => {
           <div className="flex gap-3">
             <button
               className={`border rounded-full px-2 py-1 transition-all ease-in duration-150
-            ${type === "fundraising" ? "border-primary-800 px-6 tracking-widest text-primary-800 hover:bg-primary-100 font-semibold" : "border-slate-600 text-slate-600 hover:bg-slate-200"}`}
+            ${type === "event" ? "border-primary-800 px-6 tracking-widest text-primary-800 hover:bg-primary-100 font-semibold" : "border-slate-600 text-slate-600 hover:bg-slate-200"}`}
               type="button"
-              onClick={() => router.push(`/projects/new?type=fundraising`)}
+              onClick={() => router.push(`/events/new?type=event`)}
             >
-              <span>Хандив олох төсөл</span>
+              <span>Арга хэмжээ</span>
             </button>
             <button
               className={`border rounded-full px-2 py-1 transition-all ease-in duration-150
-            ${type === "grant_fundraising" ? "border-primary-800 px-6 tracking-widest text-primary-800 hover:bg-primary-100 font-semibold" : "border-slate-600 text-slate-600 hover:bg-slate-200"}`}
+            ${type === "volunteering_event" ? "border-primary-800 px-6 tracking-widest text-primary-800 hover:bg-primary-100 font-semibold" : "border-slate-600 text-slate-600 hover:bg-slate-200"}`}
               type="button"
-              onClick={() =>
-                router.push(`/projects/new?type=grant_fundraising`)
-              }
+              onClick={() => router.push(`/events/new?type=volunteering_event`)}
             >
-              <span>Хандив өгөх төсөл</span>
+              <span>Сайн дурын арга хэмжээ</span>
             </button>
           </div>
           <p className="text-gray-400 mt-2 text-sm">
@@ -91,19 +89,19 @@ const NewProject = () => {
             component="link"
             icon={<ArrowLeft color="#3c888d" />}
             variant="outline"
-            href={`/projects`}
+            href={`/events`}
           />
           <p className="font-semibold text-lg">
-            {type === "fundraising"
-              ? "Хандив олох төсөл нэмэх"
-              : "Хандив өгөх төсөл нэмэх "}
+            {type === "event"
+              ? "Арга хэмжээ нэмэх"
+              : "Сайн дурын арга хэмжээ нэмэх "}
           </p>
           <ToolTip text="Use flex-auto to allow a flex item to grow and shrink, taking into account its initial size:, Use flex-auto to allow a flex item to grow and shrink, taking into account its initial size:" />
         </div>
         {/* GRANT FORM */}
-        {type === "fundraising" ? (
-          <FundraisingForm
-            fundraising={null}
+        {type === "event" ? (
+          <EventForm
+            event={null}
             handleFormSubmit={handleSubmit}
             setThumbnail={setThumbnail}
             thumbnail={thumbnail}
@@ -111,8 +109,8 @@ const NewProject = () => {
             cover={cover}
           />
         ) : (
-          <GrantFundraisingForm
-            grantFundraising={null}
+          <VolunteeringEventForm
+            event={null}
             handleFormSubmit={handleSubmit}
             setThumbnail={setThumbnail}
             thumbnail={thumbnail}
@@ -125,4 +123,4 @@ const NewProject = () => {
   );
 };
 
-export default NewProject;
+export default NewEvent;

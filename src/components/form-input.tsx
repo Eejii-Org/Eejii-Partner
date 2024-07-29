@@ -2,7 +2,7 @@ import { forwardRef, ReactNode, useId } from "react";
 import { twMerge } from "tailwind-merge";
 
 interface Props {
-  type?: "text" | "email" | "password";
+  type?: "text" | "email" | "password" | "number";
   placeholder?: string;
 }
 

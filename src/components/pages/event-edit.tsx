@@ -4,20 +4,20 @@ import {
   IconButton,
   MainLayout,
   ToolTip,
-  FundraisingForm,
-  GrantFundraisingForm,
+  EventForm,
+  VolunteeringEventForm,
 } from "@/components";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
-import { ProjectInputs } from "@/schemas/projectSchema";
-import { useAddProjectImage, useEditProject, useFetchProject } from "@/lib";
+import { EventInputs } from "@/schemas/eventSchema";
+import { useAddEventImage, useEditEvent, useFetchEvent } from "@/lib";
 import { showToast } from "@/utils/show-toast";
-import { ProjectType } from "@/types";
+import { EventType } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
 
-export const EditProjectComp = ({ slug }: { slug: string }) => {
-  const { data: project, isLoading } = useFetchProject(slug);
+export const EditEventComp = ({ slug }: { slug: string }) => {
+  const { data: event, isLoading } = useFetchEvent(slug);
   const router = useRouter();
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
@@ -25,18 +25,18 @@ export const EditProjectComp = ({ slug }: { slug: string }) => {
   const [thumbnail, setThumbnail] = useState<File | undefined>();
   const [cover, setCover] = useState<File | undefined>();
 
-  const { mutate, isPending: isProjectLoading } = useEditProject();
-  const { mutate: addImage, isPending: isImageLoading } = useAddProjectImage();
+  const { mutate, isPending: isEventLoading } = useEditEvent();
+  const { mutate: addImage, isPending: isImageLoading } = useAddEventImage();
 
   const queryClient = useQueryClient();
-  function handleSubmit(type: string, data: ProjectInputs) {
+  function handleSubmit(type: string, data: EventInputs) {
     mutate(
       {
         slug: slug,
         formData: data,
       },
       {
-        onSuccess: async (data: ProjectType) => {
+        onSuccess: async (data: EventType) => {
           thumbnail &&
             addImage(
               { type: "thumbnail", file: thumbnail, slug: data.slug },
@@ -47,11 +47,11 @@ export const EditProjectComp = ({ slug }: { slug: string }) => {
               },
             );
           cover && addImage({ type: "cover", file: cover, slug: data.slug });
-          showToast("success", "Successfully updated Fundraising");
+          showToast("success", "Successfully updated event");
           await queryClient.invalidateQueries({
-            queryKey: ["project", slug],
+            queryKey: ["event", slug],
           });
-          router.push(`/projects/${slug}`);
+          router.push(`/events/${slug}`);
         },
         onError: (err) => {
           showToast("error", err.message);
@@ -72,19 +72,18 @@ export const EditProjectComp = ({ slug }: { slug: string }) => {
               component="link"
               icon={<ArrowLeft color="#3c888d" />}
               variant="outline"
-              href={`/projects/${project?.slug}`}
+              href={`/events/${event?.slug}`}
             />
             <p className="font-semibold text-lg">
-              {type === "fundraising"
-                ? `Хандив олох төсөл: ${project?.title}`
-                : `Хандив өгөх төсөл: ${project?.title}`}
+              {type === "event"
+                ? `Арга хэмжээ: ${event?.title}`
+                : `Сайн дурын арга хэмжээ: ${event?.title}`}
             </p>
             <ToolTip text="Use flex-auto to allow a flex item to grow and shrink, taking into account its initial size:, Use flex-auto to allow a flex item to grow and shrink, taking into account its initial size:" />
           </div>
-          {/* GRANT FORM */}
-          {type === "fundraising" ? (
-            <FundraisingForm
-              fundraising={project ?? null}
+          {type === "event" ? (
+            <EventForm
+              event={event ?? null}
               handleFormSubmit={handleSubmit}
               setThumbnail={setThumbnail}
               thumbnail={thumbnail}
@@ -92,8 +91,8 @@ export const EditProjectComp = ({ slug }: { slug: string }) => {
               cover={cover}
             />
           ) : (
-            <GrantFundraisingForm
-              grantFundraising={project ?? null}
+            <VolunteeringEventForm
+              event={event ?? null}
               handleFormSubmit={handleSubmit}
               setThumbnail={setThumbnail}
               thumbnail={thumbnail}
