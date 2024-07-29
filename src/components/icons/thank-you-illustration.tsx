@@ -1,9 +1,4 @@
-import { IconPropsType } from ".";
-
-export const ThankYouIllustration = ({
-  width = 256,
-  height = 256,
-}: IconPropsType) => (
+export const ThankYouIllustration = ({ width = 256, height = 256 }) => (
   <svg
     // width={width}
     // height={height}

@@ -2,18 +2,16 @@
 import Link from "next/link";
 import { useContext, useState } from "react";
 import Image from "next/image";
-import {
-  CaretDown,
-  Close,
-  GlobeIcon,
-  LogOutIcon,
-  Menu,
-  PersonIcon,
-} from "./icons";
-import { AuthContext, useAuth } from "@/providers";
+import { AuthContext, useAuth } from "@/providers/auth-provider";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
 import { Loader } from "./loader";
+import { Close } from "./icons/close";
+import { Menu } from "./icons/menu";
+import { GlobeIcon } from "./icons/globe";
+import { LogOutIcon } from "./icons/log-out";
+import { PersonIcon } from "./icons/person";
+import { CaretDown } from "./icons/caret-down";
 
 const links = [
   {

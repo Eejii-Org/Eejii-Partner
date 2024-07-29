@@ -1,10 +1,4 @@
-import { IconPropsType } from "./index";
-
-export const MailIcon = ({
-  width = 24,
-  height = 24,
-  color = "#3c888d",
-}: IconPropsType) => {
+export const MailIcon = ({ width = 24, height = 24, color = "#3c888d" }) => {
   return (
     <svg
       width={width}

@@ -1,13 +1,15 @@
 "use client";
-import { Banner, Button, ChevronRightIcon, StateTab } from "@/components";
-import { Loader } from "@/components/loader";
+import { Banner } from "@/components/banner";
+import { Button } from "@/components/button";
+import { ChevronRightIcon } from "@/components/icons/chevronrighticon";
 import { MainLayout } from "@/components/main-layout";
-import { useFetchMyEvents } from "@/lib";
+import { StateTab } from "@/components/tab";
+import { useFetchMyEvents } from "@/lib/events";
 import { PaginationType, EventType } from "@/types";
 import { format } from "date-fns";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Events() {
   // PARAMS

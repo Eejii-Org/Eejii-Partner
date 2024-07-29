@@ -1,22 +1,25 @@
-"use client";
-
 import { grantFundraisingSchema, ProjectInputs } from "@/schemas/projectSchema";
 import { Button } from "./button";
 import Image from "next/image";
 import { DragAndDropFileUpload } from "./drag-and-drop";
-import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
-import { ArrowRight, CalendarIcon, Close } from "./icons";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryType, ProjectType } from "@/types";
-import { getCategories } from "@/actions";
+import { getCategories } from "@/actions/actions";
 import { useEffect, useState } from "react";
 import DateTimePicker from "react-datetime-picker";
-import { formatDateTimeLocal } from "@/utils";
+import { formatDateTimeLocal } from "@/utils/to-date-string";
 import { IconButton } from "./icon-button";
-import { useDeleteProjectImage } from "@/lib";
+import { useDeleteProjectImage } from "@/lib/projects";
 import { useQueryClient } from "@tanstack/react-query";
+import { Close } from "./icons/close";
+import { ArrowRight } from "./icons/arrow-right";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("./editor").then((mod) => mod), {
+  ssr: false,
+});
 
 export const GrantFundraisingForm = ({
   grantFundraising,
@@ -28,10 +31,10 @@ export const GrantFundraisingForm = ({
 }: {
   grantFundraising?: ProjectType | null;
   handleFormSubmit: (type: string, data: ProjectInputs) => void;
-  thumbnail: File | undefined;
-  setThumbnail: (file: File | undefined) => void;
-  cover: File | undefined;
-  setCover: (file: File | undefined) => void;
+  thumbnail: File | null;
+  setThumbnail: (file: File | null) => void;
+  cover: File | null;
+  setCover: (file: File | null) => void;
 }) => {
   const { mutate: deleteImage, isPending: isDeleteImagePending } =
     useDeleteProjectImage();

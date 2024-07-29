@@ -1,10 +1,4 @@
-import { IconPropsType } from "./index";
-
-export const LogOutIcon = ({
-  width = 24,
-  height = 24,
-  color = "none",
-}: IconPropsType) => {
+export const LogOutIcon = ({ width = 24, height = 24, color = "none" }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

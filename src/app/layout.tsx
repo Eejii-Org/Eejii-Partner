@@ -4,7 +4,7 @@ import "./globals.css";
 import "react-datetime-picker/dist/DateTimePicker.css";
 import "react-calendar/dist/Calendar.css";
 import "react-clock/dist/Clock.css";
-import { AuthProvider } from "@/providers";
+import { AuthProvider } from "@/providers/auth-provider";
 import { ReactQueryClientProvider } from "@/providers/query-client-provider";
 import ToastProvider from "@/providers/toast-provider";
 

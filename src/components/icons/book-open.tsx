@@ -1,10 +1,4 @@
-import { IconPropsType } from "./index";
-
-export const BookOpenIcon = ({
-  width = 24,
-  height = 24,
-  color = "black",
-}: IconPropsType) => (
+export const BookOpenIcon = ({ width = 24, height = 24, color = "black" }) => (
   <svg
     width={width}
     height={height}

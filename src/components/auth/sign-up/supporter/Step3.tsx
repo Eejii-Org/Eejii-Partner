@@ -1,5 +1,5 @@
 "use client";
-import { Input } from "@/components";
+import { Input } from "@/components/input";
 import { UserType } from "@/types";
 export const Step3 = ({ userDetail }: { userDetail: UserType }) => {
   return (

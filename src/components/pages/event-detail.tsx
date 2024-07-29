@@ -1,16 +1,13 @@
 "use client";
 import Image from "next/image";
 import { MainLayout } from "@/components/main-layout";
-import {
-  ArrowLeft,
-  Button,
-  IconButton,
-  PencilSimpleIcon,
-  UsersIcon,
-} from "@/components";
-import { formatPrice } from "@/utils";
 import { format } from "date-fns";
-import { useFetchEvent } from "@/lib";
+import { useFetchEvent } from "@/lib/events";
+import { IconButton } from "../icon-button";
+import { ArrowLeft } from "../icons/arrow-left";
+import { Button } from "../button";
+import { UsersIcon } from "../icons/users";
+import { PencilSimpleIcon } from "../icons/pencil-simple";
 
 export const EventDetailComp = ({ slug }: { slug: string }) => {
   const { data: event, isLoading } = useFetchEvent(slug);

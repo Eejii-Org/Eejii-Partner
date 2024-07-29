@@ -1,10 +1,8 @@
-import { IconPropsType } from "./index";
-
 export const ArrowRightUp = ({
   width = 24,
   height = 24,
   color = "#3C888D",
-}: IconPropsType) => (
+}) => (
   <svg
     width={width}
     height={height}

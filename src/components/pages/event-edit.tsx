@@ -1,20 +1,19 @@
 "use client";
-import {
-  ArrowLeft,
-  IconButton,
-  MainLayout,
-  ToolTip,
-  EventForm,
-  VolunteeringEventForm,
-} from "@/components";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 
 import { EventInputs } from "@/schemas/eventSchema";
-import { useAddEventImage, useEditEvent, useFetchEvent } from "@/lib";
+import { useAddEventImage, useEditEvent, useFetchEvent } from "@/lib/events";
 import { showToast } from "@/utils/show-toast";
 import { EventType } from "@/types";
 import { useQueryClient } from "@tanstack/react-query";
+import { MainLayout } from "../main-layout";
+import { IconButton } from "../icon-button";
+import { ArrowLeft } from "../icons/arrow-left";
+import { VolunteeringEventForm } from "../volunteering-event-form";
+import { EventForm } from "../event-form";
+import { ToolTip } from "../tool-tip";
 
 export const EditEventComp = ({ slug }: { slug: string }) => {
   const { data: event, isLoading } = useFetchEvent(slug);
@@ -22,8 +21,8 @@ export const EditEventComp = ({ slug }: { slug: string }) => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const [thumbnail, setThumbnail] = useState<File | undefined>();
-  const [cover, setCover] = useState<File | undefined>();
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
+  const [cover, setCover] = useState<File | null>(null);
 
   const { mutate, isPending: isEventLoading } = useEditEvent();
   const { mutate: addImage, isPending: isImageLoading } = useAddEventImage();

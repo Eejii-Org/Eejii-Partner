@@ -1,23 +1,25 @@
-"use client";
-
 import { fundraisingSchema, ProjectInputs } from "@/schemas/projectSchema";
 import Image from "next/image";
 import { Button } from "./button";
 import { DragAndDropFileUpload } from "./drag-and-drop";
-import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
-import { ArrowRight, CalendarIcon, Close } from "./icons";
 import { MoneyInput } from "./money-input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CategoryType, ProjectType } from "@/types";
-import { getCategories } from "@/actions";
 import { useEffect, useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { useDeleteProjectImage } from "@/lib";
 import { IconButton } from "./icon-button";
 import DateTimePicker from "react-datetime-picker";
-import { formatDateTimeLocal } from "@/utils";
+import { useDeleteProjectImage } from "@/lib/projects";
+import { getCategories } from "@/actions/actions";
+import { Close } from "./icons/close";
+import { ArrowRight } from "./icons/arrow-right";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("./editor").then((mod) => mod), {
+  ssr: false,
+});
 
 export const FundraisingForm = ({
   fundraising,
@@ -29,10 +31,10 @@ export const FundraisingForm = ({
 }: {
   fundraising?: ProjectType | null;
   handleFormSubmit: (type: string, data: ProjectInputs) => void;
-  thumbnail: File | undefined;
-  setThumbnail: (file: File | undefined) => void;
-  cover: File | undefined;
-  setCover: (file: File | undefined) => void;
+  thumbnail: File | null;
+  setThumbnail: (file: File | null) => void;
+  cover: File | null;
+  setCover: (file: File | null) => void;
 }) => {
   const { mutate: deleteImage, isPending: isDeleteImagePending } =
     useDeleteProjectImage();
@@ -122,6 +124,10 @@ export const FundraisingForm = ({
     };
     fetchCategories();
   }, []);
+
+  function formatDateTimeLocal(arg0: Date): string {
+    throw new Error("Function not implemented.");
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-3">

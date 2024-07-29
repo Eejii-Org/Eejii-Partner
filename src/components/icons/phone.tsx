@@ -1,10 +1,4 @@
-import { IconPropsType } from "./index";
-
-export const PhoneIcon = ({
-  width = 24,
-  height = 24,
-  color = "white",
-}: IconPropsType) => {
+export const PhoneIcon = ({ width = 24, height = 24, color = "white" }) => {
   return (
     <svg
       width={width}

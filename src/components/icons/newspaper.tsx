@@ -1,10 +1,8 @@
-import { IconPropsType } from "./index";
-
 export const NewspaperIcon = ({
   width = 24,
   height = 24,
   color = "#3c888d",
-}: IconPropsType) => {
+}) => {
   return (
     <svg
       width={width}

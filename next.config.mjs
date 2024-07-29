@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 
-// Test
 const nextConfig = {
+  env: {
+    NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    NEXT_SERVER_BACKEND_URL: process.env.NEXT_SERVER_BACKEND_URL,
+  },
   images: {
     remotePatterns: [
       {
@@ -14,6 +17,12 @@ const nextConfig = {
   },
   experimental: {
     missingSuspenseWithCSRBailout: false,
+  },
+  serverRuntimeConfig: {
+    baseUrl: process.env.NEXT_SERVER_BACKEND_URL,
+  },
+  publicRuntimeConfig: {
+    baseUrl: process.env.NEXT_PUBLIC_BACKEND_URL,
   },
 };
 

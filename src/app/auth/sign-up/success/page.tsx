@@ -1,4 +1,4 @@
-import { ThankYouIllustration } from "@/components";
+import { ThankYouIllustration } from "@/components/icons/thank-you-illustration";
 import Link from "next/link";
 
 const SuccessPage = () => {

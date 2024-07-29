@@ -1,5 +1,6 @@
 "use client";
-import { PartnerIcon, PersonIcon } from "@/components";
+import { PartnerIcon } from "@/components/icons/partner";
+import { PersonIcon } from "@/components/icons/person";
 import { UserType } from "@/types";
 import { useState } from "react";
 

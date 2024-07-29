@@ -1,5 +1,5 @@
 "use client";
-import { Input } from "@/components";
+import { Input } from "@/components/input";
 import { UserType } from "@/types";
 
 export const SupporterStep2 = ({ userDetail }: { userDetail: UserType }) => {

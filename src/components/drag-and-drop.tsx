@@ -1,4 +1,3 @@
-"use client";
 import { useState } from "react";
 import { CameraIcon } from "./icons/camera";
 
@@ -6,8 +5,8 @@ export const DragAndDropFileUpload = ({
   file,
   setFile,
 }: {
-  file?: File | undefined;
-  setFile: (file: File | undefined) => void;
+  file?: File | null;
+  setFile: (file: File | null) => void;
 }) => {
   const [fileEnter, setFileEnter] = useState(false);
   return (
@@ -76,7 +75,7 @@ export const DragAndDropFileUpload = ({
             type="image/png" //need to be updated based on type of file
           />
           <button
-            onClick={() => setFile(undefined)}
+            onClick={() => setFile(null)}
             className="px-4 mt-10 uppercase py-2 tracking-widest outline-none bg-red-600 text-white rounded"
           >
             Reset

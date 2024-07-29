@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode } from "react";
-import { BrainstormIllustration } from "./icons";
+import { BrainstormIllustration } from "./icons/brainstorm-illustration";
 
 export const Banner = ({
   label,

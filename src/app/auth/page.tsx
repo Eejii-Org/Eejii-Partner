@@ -1,4 +1,4 @@
-import { UserSelect } from "@/components/auth";
+import { UserSelect } from "@/components/auth/user-select";
 
 const Auth = () => {
   return <UserSelect />;

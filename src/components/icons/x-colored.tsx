@@ -1,6 +1,4 @@
-import { IconPropsType } from ".";
-
-export const XColored = ({ width = 24, height = 24 }: IconPropsType) => {
+export const XColored = ({ width = 24, height = 24 }) => {
   return (
     <svg
       width={width}

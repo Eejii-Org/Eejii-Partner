@@ -2,9 +2,9 @@
 
 import { ReactNode, useState } from "react";
 import { IconButton } from "./icon-button";
-import { BookOpenIcon, Close } from "./icons";
 import { Button } from "./button";
 import { twMerge } from "tailwind-merge";
+import { Close } from "./icons/close";
 
 export const Modal = ({
   className,

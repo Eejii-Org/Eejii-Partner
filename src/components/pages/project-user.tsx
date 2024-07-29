@@ -1,30 +1,28 @@
 "use client";
 import Image from "next/image";
 import {
-  ArrowLeft,
-  BookOpenIcon,
-  Button,
-  Close,
-  EnvelopeIcon,
-  IconButton,
-  MainLayout,
-  MapPinIcon,
-  Modal,
-  PhoneIcon,
-  SingleCheckIcon,
-  StateTab,
-} from "@/components";
-import {
   useAcceptProjectUser,
   useDenyProjectUser,
   useFetchProjectUsers,
-} from "@/lib";
+} from "@/lib/projects";
 import { useSearchParams } from "next/navigation";
 import { ProjectUserType } from "@/types";
 import { format } from "date-fns";
 import { showToast } from "@/utils/show-toast";
 import { useQueryClient } from "@tanstack/react-query";
 import { useEffect } from "react";
+import { Modal } from "../modal";
+import { BookOpenIcon } from "../icons/book-open";
+import { PhoneIcon } from "../icons/phone";
+import { EnvelopeIcon } from "../icons/envelope";
+import { MapPinIcon } from "../icons/map-pin";
+import { SingleCheckIcon } from "../icons/single-check";
+import { Button } from "../button";
+import { Close } from "../icons/close";
+import { IconButton } from "../icon-button";
+import { MainLayout } from "../main-layout";
+import { ArrowLeft } from "../icons/arrow-left";
+import { StateTab } from "../tab";
 
 const states = [
   {
@@ -230,7 +228,7 @@ export const ProjectUserComp = ({ slug }: { slug: string }) => {
   const projectUsers = data?.["hydra:member"];
 
   useEffect(() => {
-    refetch();
+    refetch;
   }, [state, page]);
 
   return (
