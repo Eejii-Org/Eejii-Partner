@@ -10,7 +10,6 @@ import { setCookie } from "cookies-next";
 import { useAuth } from "@/providers/auth-provider";
 
 export const SignInComp = () => {
-  const ref = useRef<HTMLFormElement>(null);
   const { getUser } = useAuth();
   const [errorMessage, setErrorMessage] = useState("");
   const router = useRouter();
@@ -18,7 +17,6 @@ export const SignInComp = () => {
     <section className="container flex flex-col flex-1 justify-center h-full pb-48">
       <div className="flex flex-col xs:items-center justify-center gap-4">
         <form
-          ref={ref}
           onSubmit={async (event) => {
             event.preventDefault();
             const formData = new FormData(event.target as HTMLFormElement);
@@ -26,22 +24,21 @@ export const SignInComp = () => {
               setErrorMessage("");
               const email = formData.get("email");
               const password = formData.get("password");
-              const { data } = await axios.post(
-                `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`,
-                {
+              const res = await axios
+                .post(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/auth`, {
                   email,
                   password,
-                },
-              );
+                })
+                .catch((e) => {
+                  throw new Error(e?.response?.data?.message);
+                });
+              const data = res?.data;
               setCookie("token", data.token);
               getUser();
               router.push("/");
             } catch (e: any) {
-              setErrorMessage(
-                e?.response?.status == "401"
-                  ? "И-мэйлээ баталгаажуулна уу"
-                  : "Таны оруулсан и-мэйл эсвэл нууц үг буруу байна.",
-              );
+              console.log(e);
+              setErrorMessage(e?.message);
             }
           }}
           className="flex flex-col gap-3 xs:max-w-[364px] xs:w-[364px]"
