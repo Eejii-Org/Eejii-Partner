@@ -24,8 +24,8 @@ export const EditProjectComp = ({ slug }: { slug: string }) => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const [thumbnail, setThumbnail] = useState<File | undefined>();
-  const [cover, setCover] = useState<File | undefined>();
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
+  const [cover, setCover] = useState<File | null>(null);
 
   const { mutate, isPending: isProjectLoading } = useEditProject();
   const { mutate: addImage, isPending: isImageLoading } = useAddProjectImage();

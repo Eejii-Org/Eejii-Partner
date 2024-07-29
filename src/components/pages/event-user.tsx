@@ -228,7 +228,7 @@ export const EventUserComp = ({ slug }: { slug: string }) => {
   const eventUsers = data?.["hydra:member"];
 
   useEffect(() => {
-    refetch();
+    refetch;
   }, [state, page]);
 
   return (

@@ -21,8 +21,8 @@ export const EditEventComp = ({ slug }: { slug: string }) => {
   const searchParams = useSearchParams();
   const type = searchParams.get("type");
 
-  const [thumbnail, setThumbnail] = useState<File | undefined>();
-  const [cover, setCover] = useState<File | undefined>();
+  const [thumbnail, setThumbnail] = useState<File | null>(null);
+  const [cover, setCover] = useState<File | null>(null);
 
   const { mutate, isPending: isEventLoading } = useEditEvent();
   const { mutate: addImage, isPending: isImageLoading } = useAddEventImage();

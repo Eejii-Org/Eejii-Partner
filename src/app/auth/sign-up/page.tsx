@@ -1,7 +1,12 @@
 import { SignUpComp } from "@/components/pages/sign-up";
+import { Suspense } from "react";
 
 const SignUp = () => {
-  return <SignUpComp />;
+  return (
+    <Suspense>
+      <SignUpComp />
+    </Suspense>
+  );
 };
 
 export default SignUp;

@@ -15,6 +15,9 @@ const nextConfig = {
       },
     ],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
   serverRuntimeConfig: {
     baseUrl: process.env.NEXT_SERVER_BACKEND_URL,
   },

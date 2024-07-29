@@ -1,10 +1,7 @@
-"use client";
-
 import { fundraisingSchema, ProjectInputs } from "@/schemas/projectSchema";
 import Image from "next/image";
 import { Button } from "./button";
 import { DragAndDropFileUpload } from "./drag-and-drop";
-import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
 import { MoneyInput } from "./money-input";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -18,6 +15,11 @@ import { useDeleteProjectImage } from "@/lib/projects";
 import { getCategories } from "@/actions/actions";
 import { Close } from "./icons/close";
 import { ArrowRight } from "./icons/arrow-right";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("./editor").then((mod) => mod), {
+  ssr: false,
+});
 
 export const FundraisingForm = ({
   fundraising,
@@ -29,10 +31,10 @@ export const FundraisingForm = ({
 }: {
   fundraising?: ProjectType | null;
   handleFormSubmit: (type: string, data: ProjectInputs) => void;
-  thumbnail: File | undefined;
-  setThumbnail: (file: File | undefined) => void;
-  cover: File | undefined;
-  setCover: (file: File | undefined) => void;
+  thumbnail: File | null;
+  setThumbnail: (file: File | null) => void;
+  cover: File | null;
+  setCover: (file: File | null) => void;
 }) => {
   const { mutate: deleteImage, isPending: isDeleteImagePending } =
     useDeleteProjectImage();

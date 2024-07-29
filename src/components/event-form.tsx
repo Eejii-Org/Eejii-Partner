@@ -1,10 +1,7 @@
-"use client";
-
 import { eventSchema, EventInputs } from "@/schemas/eventSchema";
 import Image from "next/image";
 import { Button } from "./button";
 import { DragAndDropFileUpload } from "./drag-and-drop";
-import Editor from "./editor";
 import { FormInput, NumberedInputWrapper } from "./form-input";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,6 +15,11 @@ import { getCategories } from "@/actions/actions";
 import { formatDateTimeLocal } from "@/utils/to-date-string";
 import { Close } from "./icons/close";
 import { ArrowRight } from "./icons/arrow-right";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(() => import("./editor").then((mod) => mod), {
+  ssr: false,
+});
 
 export const EventForm = ({
   event,
@@ -29,13 +31,14 @@ export const EventForm = ({
 }: {
   event?: EventType | null;
   handleFormSubmit: (type: string, data: EventInputs) => void;
-  thumbnail: File | undefined;
-  setThumbnail: (file: File | undefined) => void;
-  cover: File | undefined;
-  setCover: (file: File | undefined) => void;
+  thumbnail: File | null;
+  setThumbnail: (file: File | null) => void;
+  cover: File | null;
+  setCover: (file: File | null) => void;
 }) => {
   const { mutate: deleteImage, isPending: isDeleteImagePending } =
     useDeleteEventImage();
+  console.log(isDeleteImagePending);
 
   const [startTime, setStartTime] = useState<Date>(
     event?.startTime ? new Date(event?.startTime) : new Date(),
