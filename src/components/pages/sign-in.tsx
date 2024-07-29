@@ -19,8 +19,9 @@ export const SignInComp = () => {
       <div className="flex flex-col xs:items-center justify-center gap-4">
         <form
           ref={ref}
-          action={async (formData) => {
-            ref.current?.reset();
+          onSubmit={async (event) => {
+            event.preventDefault();
+            const formData = new FormData(event.target as HTMLFormElement);
             try {
               setErrorMessage("");
               const email = formData.get("email");
@@ -37,7 +38,7 @@ export const SignInComp = () => {
               router.push("/");
             } catch (e: any) {
               setErrorMessage(
-                e.response.status == "401"
+                e?.response?.status == "401"
                   ? "И-мэйлээ баталгаажуулна уу"
                   : "Таны оруулсан и-мэйл эсвэл нууц үг буруу байна.",
               );
